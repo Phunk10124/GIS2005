@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>ArcGIS Maps SDK for JavaScript Tutorials: Display a map</title>
+
+    <style>
+      html,
+      body {
+         height: 100%;
+          margin: 0;
+          font-family: sans-serif;
+      
+      }
+      header{
+        
+      background-color: #f1f1f1;
+        text-align: center;
+       padding: 10px;
+      }
+    
+     
+    
+      .map-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .banner {
+        width: 200px;
+        flex-shrink: 0;
+      }
+
+      .banner img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      arcgis-map {
+        width: 800px;
+        height: 400px;
+        flex-shrink: 0;
+      }
+  .map-caption {
+  max-width: 800px;        
+  margin: 20px auto 40px;  
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #000000;
+  padding: 0 20px;         
+}
+    </style>
+    
+    
+
+    <!-- Load the ArcGIS Maps SDK for JavaScript from CDN -->
+    <script type="module" src="https://js.arcgis.com/5.1/"></script>
+
+  </head>
+
+
+  <body>
+ <header>
+  <h1>Prairie Dog Colony Management</h1>
+ </header>
+    
+    <div class="map-row">
+  <aside class="banner banner-left">
+    <img src="PD_NPS_L.jpg" alt="Left Banner">
+  </aside>
+
+  <arcgis-map item-id="fe6c854ab1b74297b8901f9d5ea17a3d" center="-105.270546, 40.014984" zoom="13">
+     
+      <arcgis-zoom slot="top-left"></arcgis-zoom>
+
+    </arcgis-map>
+ 
+  
+  
+  <aside class="banner banner-right">
+    <img src="PD_NPS_R.jpg" alt="Right Banner">
+  </aside>
+</div>
+<p class="map-caption">
+  This map shows the different prairie dog management sites across Boulder.
+  The different colors represent the different management actions that are being taken at the sites.
+</p>
+
+
+
+
+<script type="module">
+  const viewElement = document.querySelector("arcgis-map");
+  const locString = window.location;
+  console.log("locString=" + locString);
+  const urlParams = new URLSearchParams(locString.search);
+  let resort = urlParams.get("resort");
+  console.log(resort);
+  if (resort=="winterpark") {
+    viewElement.goTo(
+    { center: [-105.76, 39.89] },
+    { duration: 5000 },
+   );
+    viewElement.zoom = 15;
+  }
+  if (resort=="vail") {
+    viewElement.goTo(
+    { center: [-106.36, 39.63] },
+    { duration: 5000 },
+   );
+    viewElement.zoom = 15;
+  }
+</script>
+  </body>
+
+</html>
